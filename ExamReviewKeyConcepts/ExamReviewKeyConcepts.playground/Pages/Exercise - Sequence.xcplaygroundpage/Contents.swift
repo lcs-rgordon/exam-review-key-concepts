@@ -24,7 +24,7 @@ import PlaygroundSupport
  
  */
 // Create a new canvas
-let canvas = Canvas(width: 442, height: 642)
+let canvas = Canvas(width: 400, height: 600)
 
 // HINT: Remember that all shapes have a fill and a border.
 //       You can turn off the fill or border if desired.
