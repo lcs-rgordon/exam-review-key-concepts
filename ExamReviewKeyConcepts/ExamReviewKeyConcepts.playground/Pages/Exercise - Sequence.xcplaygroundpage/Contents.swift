@@ -23,11 +23,9 @@ import PlaygroundSupport
  
  Or, if you wish, you may use the color constants created below.
  */
+
 // Create a new canvas
 let canvas = Canvas(width: 442, height: 642, quality: .Ultra)
-
-// Move the origin
-canvas.translate(byX: 21, byY: 21)
 
 // COLORS
 let grey = Color(hue: 219, saturation: 1, brightness: 82, alpha: 100)
@@ -35,6 +33,9 @@ let lightBlue = Color(hue: 205, saturation: 74, brightness: 77, alpha: 75)
 let lightRed = Color(hue: 4, saturation: 78, brightness: 92, alpha: 100)
 
 // 1. BACKGROUND
+
+// Move the origin
+canvas.translate(byX: 21, byY: 21)
 
 // Set the background color
 canvas.fillColor = grey
