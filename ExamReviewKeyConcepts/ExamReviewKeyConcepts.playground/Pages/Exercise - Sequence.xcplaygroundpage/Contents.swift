@@ -12,7 +12,8 @@ import PlaygroundSupport
  
  Your goal is to precisely reproduce this image (the underlying image, not the planning grid):
  
- ![tjamc](tjamc.png "The Jesus and Mary Chain")
+ ![tjamc-no-grid.png](tjamc-no-grid.png "The Jesus and Mary Chain")
+ ![tjamc-with-grid.png](tjamc-with-grid.png "The Jesus and Mary Chain")
  
  By precisely reproducing this image, you will demonstrate your understanding of:
  
