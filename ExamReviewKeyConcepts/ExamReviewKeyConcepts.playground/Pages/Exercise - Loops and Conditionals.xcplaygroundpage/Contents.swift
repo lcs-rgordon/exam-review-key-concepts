@@ -6,13 +6,12 @@ import PlaygroundSupport
 /*:
  ## Exercise
  
- Attempt to reproduce this image:
- 
  Each image is exactly 400 pixels wide by 600 pixels tall.
  
  Your goal is to precisely reproduce this image (the underlying image, not the planning grid):
  
- ![sloan](sloan.png "Sloan")
+ ![sloan-no-grid.png](sloan-no-grid.png "The Jesus and Mary Chain")
+ ![sloan-with-grid.png](sloan-with-grid.png "The Jesus and Mary Chain")
  
  By precisely reproducing this image, you will demonstrate your understanding of:
  
@@ -23,7 +22,9 @@ import PlaygroundSupport
  You can use the **Digital Color Meter** app (already installed on your Mac) to find specific colours as RGB (red-green-blue) codes.
  
  You [can use this site](http://www.workwithcolor.com/color-converter-01.htm) to convert colours to HSB to use with the Canvas class.
- 
+
+ Or, if you wish, you may use the color constants created below.
+
  */
 
 // Create a new canvas
@@ -32,10 +33,15 @@ let canvas = Canvas(width: 442, height: 642, quality: .Ultra)
 // Move the origin
 canvas.translate(byX: 21, byY: 21)
 
+// COLOR CONSTANTS
+let deepOrange = Color(hue: 12, saturation: 78, brightness: 92, alpha: 100)
+let lightBlue = Color(hue: 195, saturation: 63, brightness: 92, alpha: 100)
+let neonGreen = Color(hue: 107, saturation: 61, brightness: 93, alpha: 100)
+
 // 1. BACKGROUND
 
 // Set the background color
-canvas.fillColor = Color(hue: 12, saturation: 78, brightness: 92, alpha: 100)
+canvas.fillColor = deepOrange
 
 // Draw rectangle for background
 canvas.drawShapesWithBorders = false
@@ -52,7 +58,7 @@ for x in stride(from: 0, through: 350, by: 50) {
     if remainder == 0 {
         
         // Set colour blue
-        canvas.fillColor = Color(hue: 195, saturation: 63, brightness: 92, alpha: 100)
+        canvas.fillColor = lightBlue
         
         // Draw lower
         canvas.drawRectangle(bottomLeftX: x, bottomLeftY: 0, width: 50, height: 350)
@@ -60,7 +66,7 @@ for x in stride(from: 0, through: 350, by: 50) {
     } else {
         
         // Set colour green
-        canvas.fillColor = Color(hue: 107, saturation: 61, brightness: 93, alpha: 100)
+        canvas.fillColor = neonGreen
         
         // Draw higher
         canvas.drawRectangle(bottomLeftX: x, bottomLeftY: 50, width: 50, height: 350)
@@ -96,12 +102,21 @@ canvas.drawText(message: "nova scotia", size: 10, x: 275, y: 540, kerning: kerni
 
 // 4. PLANNING GRID
 
-// Move origin back to lower left corner
+// Move origin back for grid
 canvas.translate(byX: -21, byY: -21)
+
+// Draw a white border around to cut off edges of poster again
+canvas.drawShapesWithBorders = false
+canvas.drawShapesWithFill = true
+canvas.fillColor = Color.white
+canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: 21, height: 642) // Left
+canvas.drawRectangle(bottomLeftX: 21, bottomLeftY: 0, width: 400, height: 21) // Bottom
+canvas.drawRectangle(bottomLeftX: 421, bottomLeftY: 0, width: 21, height: 642) // Right
+canvas.drawRectangle(bottomLeftX: 21, bottomLeftY: 621, width: 400, height: 21) // Top
+
 
 // Grid in white
 canvas.lineColor = Color.black
-canvas.textColor = Color.black
 
 // Vertical lines
 for x in stride(from: 21, through: 421, by: 50) {
@@ -128,7 +143,8 @@ for x in stride(from: 21, through: 621, by: 50) {
     canvas.drawText(message: String(x - 21), size: 9, x: x, y: -20)
 }
 
-// Copy to clipboard
+
+// Put image on clipboard
 canvas.copyToClipboard()
 
 /*:
