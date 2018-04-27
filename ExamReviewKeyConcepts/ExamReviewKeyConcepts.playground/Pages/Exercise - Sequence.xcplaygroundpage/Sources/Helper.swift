@@ -466,11 +466,13 @@ open class Canvas : CustomPlaygroundQuickLookable {
         let path = NSBezierPath(ovalIn: NSRect(x: centreX - width/2, y: centreY - height/2, width: width, height: height))
         
         // Set width of border
-        if borderWidth > 0 {
-            path.lineWidth = CGFloat(borderWidth)
-        } else {
-            path.lineWidth = CGFloat(self.defaultBorderWidth * scale)
-        }
+//        if borderWidth > 0 {
+//            path.lineWidth = CGFloat(borderWidth)
+//        } else {
+//            path.lineWidth = CGFloat(self.defaultBorderWidth * scale)
+//        }
+        // BUG FIX: Border width for higher quality rendering
+        path.lineWidth = CGFloat(self.defaultBorderWidth)
         
         // Set ellipse border color
         NSColor(hue: borderColor.translatedHue, saturation: borderColor.translatedSaturation, brightness: borderColor.translatedBrightness, alpha: borderColor.translatedAlpha).setStroke()

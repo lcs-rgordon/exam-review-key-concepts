@@ -24,7 +24,7 @@ import PlaygroundSupport
  
  */
 // Create a new canvas
-let canvas = Canvas(width: 442, height: 642)
+let canvas = Canvas(width: 442, height: 642, quality: .Ultra)
 
 // Move the origin
 canvas.translate(byX: 21, byY: 21)
@@ -80,16 +80,21 @@ canvas.drawText(message: "los angeles, california", size: 10, x: 275, y: 540, ke
 
 // 4. PLANNING GRID
 
-// Move origin back to lower left corner
+// Move origin back for grid
 canvas.translate(byX: -21, byY: -21)
 
-// Draw white border
-canvas.borderColor = Color.white
-canvas.defaultBorderWidth = 30
-canvas.drawRectangle(bottomLeftX: 6, bottomLeftY: 10, width: 430, height: 630)
+// Draw a white border around to cut off edges of poster again
+canvas.drawShapesWithBorders = false
+canvas.drawShapesWithFill = true
+canvas.fillColor = Color.white
+canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: 21, height: 642) // Left
+canvas.drawRectangle(bottomLeftX: 21, bottomLeftY: 0, width: 400, height: 21) // Bottom
+canvas.drawRectangle(bottomLeftX: 421, bottomLeftY: 0, width: 21, height: 642) // Right
+canvas.drawRectangle(bottomLeftX: 21, bottomLeftY: 621, width: 400, height: 21) // Top
+
 
 // Grid in white
-canvas.lineColor = Color.white
+canvas.lineColor = Color.black
 
 // Vertical lines
 for x in stride(from: 21, through: 421, by: 50) {
@@ -115,6 +120,7 @@ for x in stride(from: 21, through: 621, by: 50) {
     canvas.drawLine(fromX: x, fromY: 21, toX: x, toY: canvas.height - 21)
     canvas.drawText(message: String(x - 21), size: 9, x: x, y: -20)
 }
+
 
 // Put image on clipboard
 canvas.copyToClipboard()
