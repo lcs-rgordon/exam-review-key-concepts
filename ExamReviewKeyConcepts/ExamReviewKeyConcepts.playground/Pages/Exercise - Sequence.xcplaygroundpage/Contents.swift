@@ -21,6 +21,7 @@ import PlaygroundSupport
  
  You [can use this site](http://www.workwithcolor.com/color-converter-01.htm) to convert colours to HSB to use with the Canvas class.
  
+ Or, if you wish, you may use the color constants created below.
  */
 // Create a new canvas
 let canvas = Canvas(width: 442, height: 642, quality: .Ultra)
@@ -28,10 +29,15 @@ let canvas = Canvas(width: 442, height: 642, quality: .Ultra)
 // Move the origin
 canvas.translate(byX: 21, byY: 21)
 
+// COLORS
+let grey = Color(hue: 219, saturation: 1, brightness: 82, alpha: 100)
+let lightBlue = Color(hue: 205, saturation: 74, brightness: 77, alpha: 75)
+let lightRed = Color(hue: 4, saturation: 78, brightness: 92, alpha: 100)
+
 // 1. BACKGROUND
 
 // Set the background color
-canvas.fillColor = Color(hue: 219, saturation: 1, brightness: 82, alpha: 100)
+canvas.fillColor = grey
 
 // Draw rectangle for background
 canvas.drawShapesWithBorders = false
@@ -42,15 +48,14 @@ canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: 400, height: 600)
 // Circle visual attributes
 canvas.drawShapesWithBorders = true
 canvas.drawShapesWithFill = false
-canvas.borderColor = Color(hue: 4, saturation: 78, brightness: 92, alpha: 100)
+canvas.borderColor = lightRed
 canvas.defaultBorderWidth = 100
 
 // Draw the circle
 canvas.drawEllipse(centreX: 200, centreY: 200, width: 275, height: 275)
 
 // 3. BLUE CIRCLE
-
-canvas.borderColor = Color(hue: 205, saturation: 74, brightness: 77, alpha: 75)
+canvas.borderColor = lightBlue
 canvas.drawEllipse(centreX: 350, centreY: 200, width: 275, height: 275)
 
 // 4. HEADLINE TEXT
