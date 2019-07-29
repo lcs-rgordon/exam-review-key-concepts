@@ -5,7 +5,8 @@ import Cocoa
 import PlaygroundSupport
 /*:
  ## Hue-Saturation-Brightness (HSB)
- For details on how this works, [review the following PDF file](http://russellgordon.ca/lcs/HSB_Color_Model_Summary_Swift.pdf)
+ For details on how this works, [review the following PDF file](http://russellgordon.ca/lcs/HSB_Color_Model_Summary_Swift.pdf).
+ 
  To summarize:
  * hue: the "shade" of the colour
  * saturation: colour intensity
@@ -33,7 +34,7 @@ for i in stride(from: 180, through: 240, by: 10) {
     canvas.lineColor = Color(hue: Float(i), saturation: 80, brightness: 90, alpha: 100)
     
     // Draw the line
-    canvas.drawLine(fromX: i, fromY: 0, toX: i, toY: canvas.height)
+    canvas.drawLine(from: Point(x: i, y: 0), to: Point(x: i, y: canvas.height))
     
 }
 
@@ -46,14 +47,21 @@ for i in stride(from: 180, through: 240, by: 10) {
  */
 canvas.drawShapesWithBorders = false
 canvas.drawShapesWithFill = true
-canvas.fillColor = Color.red        // try changing this to another colour
-canvas.drawEllipse(centreX: 5, centreY: canvas.height / 2, width: 10, height: 10)
+
+// Set the fill color using a predefined color – a shortcut – on the Color class
+canvas.fillColor = Color.red
+canvas.drawEllipse(at: Point(x: 25, y: canvas.height / 2), width: 50, height: 50)
+
+// Draw a blue circle
 canvas.fillColor = Color.blue
-canvas.drawEllipse(centreX: 15, centreY: canvas.height / 2, width: 10, height: 10)
+canvas.drawEllipse(at: Point(x: 75, y: canvas.height / 2), width: 50, height: 50)
+
+// Draw a green circle
 canvas.fillColor = Color.green
-canvas.drawEllipse(centreX: 25, centreY: canvas.height / 2, width: 10, height: 10)
+canvas.drawEllipse(at: Point(x: 125, y: canvas.height / 2), width: 50, height: 50)
+
 /*:
  ## Template code
  The code below is necessary to see results in the Assistant Editor at right. Please do not remove.
  */
-PlaygroundPage.current.liveView = canvas.imageView
+PlaygroundPage.current.liveView = canvas
